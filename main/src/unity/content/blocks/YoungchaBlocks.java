@@ -320,7 +320,6 @@ public class YoungchaBlocks{
             rotate = true;
             health = 2000;
             solid = true;
-            consumes.liquid(Liquids.water, 0.1f);
             config.nodeConfig.put(HeatGraph.class, b -> new HeatGraphNode(b, 0.01f, 0.1f, 9, 1100 + HeatGraphNode.celsiusZero));
             config.fixedConnection(HeatGraph.class, 0,0,0, 0,0,0 ,0,1,0 ,0,0,0);
         }};
