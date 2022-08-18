@@ -59,7 +59,7 @@ public class YoungchaBlocks{
     //other
         reinforcedPowerNode,//shitty power node just so vanilla can stop existing in this area for lore reasons.
     unitAssemblyArm,
-    sandboxAssembler, monomialHangar; // monomial, binomial then polynomial (maybe meromorphic for the t6-t7 equiv massive unit)
+    sandboxAssembler, monomialHangar, monomialHangarPlus; // monomial, binomial then polynomial (maybe meromorphic for the t6-t7 equiv massive unit)
 
     public static void load(){
         oreNickel = new UnityOreBlock(UnityItems.nickel){{
@@ -252,7 +252,7 @@ public class YoungchaBlocks{
             tier = 3;
             drillTime = 400;
             requirements(Category.production, with(Items.lead, 60, Items.copper, 150));
-            consumeLiquid(Liquids.water, 0.08f).boost();
+            consumes.liquid(Liquids.water, 0.08f).boost();
 
             config.nodeConfig.put(TorqueGraph.class, b -> new TorqueGraphNode(0.13f, 50f, 40,b));
             config.fixedConnection(TorqueGraph.class, 0, 1, 0,  0, 0, 0,  0, 1, 0,  0, 0, 0);
@@ -277,7 +277,7 @@ public class YoungchaBlocks{
             size = 3;
             health = 2600;
             craftTime = 100.0F;
-            consumeItem(Items.coal, 9);
+            consumes.item(Items.coal, 9);
             outputItem = new ItemStack(Items.graphite, 8);
             config.nodeConfig.put(TorqueGraph.class, b -> new TorqueGraphNode(0.15f, 60f, 50,b));
             config.fixedConnection(TorqueGraph.class, 0, 1, 0,  0, 0, 0,  0, 1, 0,  0, 0, 0);
@@ -289,7 +289,7 @@ public class YoungchaBlocks{
             health = 2600;
             itemCapacity = 100;
             craftTime = 30.0F;
-            consumeItems(new ItemStack(Items.coal, 1),new ItemStack(Items.lead, 1),new ItemStack(Items.sand, 1));
+            consumes.items(new ItemStack(Items.coal, 1),new ItemStack(Items.lead, 1),new ItemStack(Items.sand, 1));
             outputItem = new ItemStack(Items.pyratite, 2);
             config.nodeConfig.put(TorqueGraph.class, b -> new TorqueGraphNode(0.3f, 100f, 70,b));
             config.fixedConnection(TorqueGraph.class, 0, 1, 0,  0, 1, 0,  0, 1, 0,  0, 1, 0);
@@ -320,7 +320,7 @@ public class YoungchaBlocks{
             rotate = true;
             health = 2000;
             solid = true;
-            consumeLiquid(Liquids.water, 0.1f);
+            consumes.liquid(Liquids.water, 0.1f);
             config.nodeConfig.put(HeatGraph.class, b -> new HeatGraphNode(b, 0.01f, 0.1f, 9, 1100 + HeatGraphNode.celsiusZero));
             config.fixedConnection(HeatGraph.class, 0,0,0, 0,0,0 ,0,1,0 ,0,0,0);
         }};
@@ -479,6 +479,14 @@ public class YoungchaBlocks{
             health = 2600;
             unitModuleWidth = 3;
             unitModuleHeight = 4;
+            rotate = true;
+        }};
+        monomialHangarPlus  = new ModularUnitAssembler("monomial-hangar-plus"){{
+            requirements(Category.units, with(Items.copper,100,Items.graphite,20, Items.metaglass,20));
+            size = 3;
+            health = 2600;
+            unitModuleWidth = 16;
+            unitModuleHeight = 16;
             rotate = true;
         }};
 
